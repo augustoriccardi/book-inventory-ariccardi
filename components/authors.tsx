@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import {
   useOptimistic,
   useTransition,
   useState,
   useCallback,
   useMemo,
-} from 'react';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { ChevronRight, Filter, X } from 'lucide-react';
+} from "react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { ChevronRight, Filter, X } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/ui/collapsible';
+} from "@/components/ui/collapsible";
 
 function filterAuthors(authors: string[], filterText: string) {
   return authors.filter((author) =>
@@ -30,14 +30,14 @@ function createAuthorGroups(authors: string[]) {
   for (let i = 65; i <= 90; i++) {
     groups[String.fromCharCode(i)] = [];
   }
-  groups['Other'] = [];
+  groups["Other"] = [];
 
   authors.forEach((author) => {
     const firstLetter = author[0].toUpperCase();
-    if (firstLetter >= 'A' && firstLetter <= 'Z') {
+    if (firstLetter >= "A" && firstLetter <= "Z") {
       groups[firstLetter].push(author);
     } else {
-      groups['Other'].push(author);
+      groups["Other"].push(author);
     }
   });
 
@@ -61,7 +61,7 @@ export function Sidebar({ selectedAuthors, allAuthors }: SidebarProps) {
   const [optimisticAuthors, setOptimisticAuthors] = useOptimistic(
     initialSelectedAuthors
   );
-  const [filterText, setFilterText] = useState('');
+  const [filterText, setFilterText] = useState("");
 
   const filteredAuthors = allAuthors
     ? filterAuthors(allAuthors, filterText)
@@ -79,7 +79,7 @@ export function Sidebar({ selectedAuthors, allAuthors }: SidebarProps) {
         setOptimisticAuthors(newAuthors.sort());
 
         const newParams = new URLSearchParams(
-          newAuthors.map((author) => ['author', author])
+          newAuthors.map((author) => ["author", author])
         );
         router.push(`/?${newParams}`);
       });
@@ -90,13 +90,13 @@ export function Sidebar({ selectedAuthors, allAuthors }: SidebarProps) {
   const handleClearAuthors = useCallback(() => {
     startTransition(() => {
       setOptimisticAuthors([]);
-      router.push('/');
+      router.push("/");
     });
   }, [router]);
 
   return (
     <div
-      data-pending={isPending ? '' : undefined}
+      data-pending={isPending ? "" : undefined}
       className="w-[300px] flex-shrink-0 border-r flex flex-col h-full"
     >
       <div className="p-4 border-b">

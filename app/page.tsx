@@ -1,14 +1,21 @@
-import { Suspense } from 'react';
-import { BooksGrid } from '@/components/grid';
-import { BookPagination } from '@/components/book-pagination';
-import { fetchBooksWithPagination } from '@/lib/data';
+import { Suspense } from "react";
+import { BooksGrid } from "@/components/grid";
+import { BookPagination } from "@/components/book-pagination";
+import { fetchBooksWithPagination } from "@/lib/data";
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: { q?: string; author?: string | string[]; page?: string };
 }) {
-  const { books, pagination } = await fetchBooksWithPagination(searchParams);
+  // Llamada a la función con los parámetros de búsqueda
+  const { books, pagination } = await fetchBooksWithPagination({
+    q: searchParams.q,
+    author: searchParams.author,
+    page: searchParams.page,
+  });
+
+  console.log(searchParams.author);
 
   return (
     <div className="flex flex-col h-full">
