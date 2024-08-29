@@ -9,21 +9,21 @@ generator client {
 
 model Author {
   id    Int    @id @default(autoincrement())
-  name  String @unique
+  name  String
   books Book[] // Relación con el modelo Book
 }
 
 model Book {
   id               String    @id @default(uuid())
-  bookId           String    @unique
   title            String
+  bookId           String
   series           String?
   author           Author    @relation(fields: [authorId], references: [id])
   authorId         Int
   rating           Float?
   description      String?
   language         String?
-  isbn             String    @unique
+  isbn             String
   genres           String?
   characters       String?
   bookFormat       String?

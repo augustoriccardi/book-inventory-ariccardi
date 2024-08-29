@@ -15,8 +15,6 @@ export default async function Page({
     page: searchParams.page,
   });
 
-  console.log(searchParams.author);
-
   return (
     <div className="flex flex-col h-full">
       <div className="flex-grow overflow-auto min-h-[200px]">
