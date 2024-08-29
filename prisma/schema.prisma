@@ -18,7 +18,7 @@ model Book {
   title            String
   bookId           String
   series           String?
-  author           Author    @relation(fields: [authorId], references: [id])
+  author           Author    @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId         Int
   rating           Float?
   description      String?
