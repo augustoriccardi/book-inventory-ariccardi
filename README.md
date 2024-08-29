@@ -1,9 +1,12 @@
-# Next.js Book Inventory
+# Description
 
-Demo: https://next-books-search.vercel.app
+## Run Local Production Mode
 
-This is a simple book inventory app built with Next.js, Drizzle, and PostgreSQL. The database contains over 50,000 books from the included `books.csv` file.
-
-## Deploy on Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/templates/next.js/next-book-inventory)
+1. Clone the repository.
+2. Create a copy of `.env.template` and rename it to `.env` and update the environment variables.
+3. Install dependencies: `npm install`
+4. Start the database: `docker compose up -d` (open Docker Desktop beforehand)
+5. Run Prisma migrations: `npx prisma migrate dev`
+6. Execute seed: `pnpm run seed`
+7. Build the project: `pnpm run build`
+8. Start the project: `pnpm run start`
